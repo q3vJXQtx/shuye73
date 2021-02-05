@@ -1313,7 +1313,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_ZNS.json`,
+      url: `https://raw.githubusercontent.com/shuye73/RandomShareCode/master/JD_ZNS.json`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
@@ -1341,7 +1341,7 @@ function readShareCodePk() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_ZNS_PK.json`,
+      url: `https://raw.githubusercontent.com/shuye73/RandomShareCode/master/JD_ZNS_PK.json`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {

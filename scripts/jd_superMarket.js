@@ -847,7 +847,7 @@ function smtg_sellMerchandise(body) {
   })
 }
 //新版东东超市
-function updatePkActivityId(url = 'https://raw.githubusercontent.com/shuye72/updateSupermarketTeam/master/jd_updateTeam.json') {
+function updatePkActivityId(url = 'https://raw.githubusercontent.com/shuye73/updateSupermarketTeam/master/jd_updateTeam.json') {
   return new Promise(resolve => {
     $.get({url}, async (err, resp, data) => {
       try {
@@ -1569,7 +1569,7 @@ function TotalBean() {
 function getTeam() {
   return new Promise(async resolve => {
     $.getTeams = [];
-    $.get({url: `https://raw.githubusercontent.com/shuye72/updateSupermarketTeam/master/jd_updateTeam.json`, timeout: 100000}, (err, resp, data) => {
+    $.get({url: `https://raw.githubusercontent.com/shuye73/updateSupermarketTeam/master/jd_updateTeam.json`, timeout: 100000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
