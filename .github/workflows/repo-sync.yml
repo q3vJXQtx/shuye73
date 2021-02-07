@@ -33,8 +33,8 @@ jobs:
         uses: Yikun/hub-mirror-action@master
         if: env.dst_key
         with:
-          src: github/shuye73/main
-          dst: gitee/shuye72/master
+          src: github/shuye73
+          dst: gitee/shuye72
           static_list: "MyActions"
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
