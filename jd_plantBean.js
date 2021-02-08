@@ -519,7 +519,7 @@ async function plantBeanIndex() {
 }
 function readShareCode() {
   return new Promise(async resolve => {
-    $.get({url: `https://cdn.jsdelivr.net/gh/shuye73/RandomShareCode@master/JD_Plant_Bean.json`, timeout: 10000}, (err, resp, data) => {
+    $.get({url: `https://raw.githubusercontent.com/shuye73/RandomShareCode/master/JD_Plant_Bean.json`, timeout: 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
