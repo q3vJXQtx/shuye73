@@ -42,6 +42,12 @@
 
 注③：如果是旁路由，建议用`--network host \`代替`-p 5679:5678 \`这一行，此时控制面板为`http://<ip>:5679`
 
+注④：容器本身默认会在启动时自动启动挂机程序（就一个jd_crazy_joy_coin），如不想自动启动，请增加一行 `-e ENABLE_HANGUP=false \`。
+
+注⑤：容器本身默认会在启动时自动启动控制面板，如不想自动启动，请增加一行 `-e ENABLE_WEB_PANEL=false \` 。
+
+注⑥：群晖和威联通用户，以及其他非root用户的，请在ssh登陆后，切换为root用户再运行： `sudo -i`
+
 5.自动更新Docker容器
 安装containrrr/watchtower可以自动更新容器
 
@@ -51,7 +57,8 @@
 	containrrr/watchtower \
 	jd
 
-
 ### 注意：
 1. 请在创建后使用`docker logs -f` jd查看创建日志，直到出现容器启动成功…字样才代表启动成功（不是以此结束的请更新镜像），按`Ctrl+C`退出查看日志。
 ![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/success.png)
+
+2. 访问 `http://<ip>:5678` （ip是指你Docker宿主机的局域网ip），初始用户名： `admin` ，初始密码： `shuye72` ，请登陆后务必修改密码，并在线编辑`config.sh` 和 `crontab.list` ，其中 `config.sh` 可以对比修改，如何修改请仔细阅读各文件注释。如未启用控制面板自动启动功能，请运行 `docker exec -it jd node /jd/panel/server.js` 来启动，使用完控制面板后Ctrl+C 即可结束进程。如无法访问，请从防火墙、端口转发、网络方面着手解决。实在无法访问，就使用winscp工具sftp连接进行修改。
