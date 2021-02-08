@@ -60,7 +60,7 @@
 ### 注意：
 1. 请在创建后使用`docker logs -f` jd查看创建日志，直到出现容器启动成功…字样才代表启动成功（不是以此结束的请更新镜像），按`Ctrl+C`退出查看日志。
 
-![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/success.png)
+   ![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/success.png)
 
 2. 访问 `http://<ip>:5678` （ip是指你Docker宿主机的局域网ip），初始用户名： `admin` ，初始密码： `shuye72` ，请登陆后务必修改密码，并在线编辑`config.sh` 和 `crontab.list` ，其中 `config.sh` 可以对比修改，如何修改请仔细阅读各文件注释。如未启用控制面板自动启动功能，请运行 `docker exec -it jd node /jd/panel/server.js` 来启动，使用完控制面板后Ctrl+C 即可结束进程。如无法访问，请从防火墙、端口转发、网络方面着手解决。实在无法访问，就使用winscp工具sftp连接进行修改。
 
@@ -68,17 +68,17 @@
 
 4. 如何重置控制面板用户名和密码
 
-`docker exec -it jd bash jd resetpwd`
+   `docker exec -it jd bash jd resetpwd`
 
 ### 手动运行脚本
 
 
-`docker exec -it jd bash git_pull` 手动 git pull 更新脚本
-`docker exec -it jd bash rm_log`#手动删除指定时间以前的旧日志
+   `docker exec -it jd bash git_pull` 手动 git pull 更新脚本
+   `docker exec -it jd bash rm_log`#手动删除指定时间以前的旧日志
 
-`docker exec jd bash jd xxx` # 手动执行某个脚本，如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
-`docker exec jd bash jd xxx now`# 手动执行某个脚本，无论是否设置了随机延迟，均立即运行
+   `docker exec jd bash jd xxx` # 手动执行某个脚本，如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
+   `docker exec jd bash jd xxx now`# 手动执行某个脚本，无论是否设置了随机延迟，均立即运行
 
 如测试下京豆变动通知脚本
 
-`docker exec jd bash jd jd_bean_change now`
+   `docker exec jd bash jd jd_bean_change now`
