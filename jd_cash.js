@@ -1,3 +1,4 @@
+
 /*
 签到领现金，每日2毛～5毛
 可互助，助力码每日不变，只变日期
@@ -7,17 +8,17 @@
 ============Quantumultx===============
 [task_local]
 #签到领现金
-2 0 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
+2 0 * * * https://raw.githubusercontent.com/shuye72/MyActions/main/scripts/jd_cash.js, tag=签到领现金, enabled=true
 
 ================Loon==============
 [Script]
-cron "2 0 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js,tag=签到领现金
+cron "2 0 * * *" script-path=https://raw.githubusercontent.com/shuye72/MyActions/main/scripts/jd_cash.js,tag=签到领现金
 
 ===============Surge=================
-签到领现金 = type=cron,cronexp="2 0 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js
+签到领现金 = type=cron,cronexp="2 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/shuye72/MyActions/main/scripts/jd_cash.js
 
 ============小火箭=========
-签到领现金 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js, cronexpr="2 0 * * *", timeout=3600, enable=true
+签到领现金 = type=cron,script-path=https://raw.githubusercontent.com/shuye72/MyActions/main/scripts/jd_cash.js, cronexpr="2 0 * * *", timeout=200, enable=true
  */
 const $ = new Env('签到领现金');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -27,10 +28,9 @@ let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = true;
-const randomCount = $.isNode() ? 20 : 5;
 const inviteCodes = [
   `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`,
-  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`,
+  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -87,7 +87,7 @@ async function jdCash() {
   await shareCodesFormat()
   await helpFriends()
   await index(true)
-  //await getReward()
+  // await getReward()
   await showMsg()
 }
 function index(info=false) {
@@ -365,7 +365,7 @@ function taskUrl(functionId, body = {}) {
 
 function getAuthorShareCode() {
   return new Promise(resolve => {
-    $.get({url: "https://cdn.jsdelivr.net/gh/shuye73/RandomShareCode@master/JD_Cash.json",headers:{
+    $.get({url: "https://gitee.com/shuye72/updateTeam/raw/master/jd_cash.json",headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }}, async (err, resp, data) => {
       $.authorCode = [];
