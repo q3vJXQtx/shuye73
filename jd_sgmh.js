@@ -2,25 +2,25 @@
 闪购盲盒
 长期活动，一人每天5次助力机会，10次被助机会，被助力一次获得一次抽奖机会，前几次必中京豆
 修改自 @yangtingxiao 抽奖机脚本
-入口：首页-闪购-闪购盲盒
+活动入口：京东APP首页-闪购-闪购盲盒
 网页地址：https://h5.m.jd.com/babelDiy/Zeus/3vzA7uGuWL2QeJ5UeecbbAVKXftQ/index.html
-更新地址：https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_sgmh.js
+更新地址：https://gitee.com/lxk0301/jd_scripts/raw/master/jd_sgmh.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #闪购盲盒
-20 8 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_sgmh.js, tag=闪购盲盒, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
+20 8 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_sgmh.js, tag=闪购盲盒, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "20 8 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_sgmh.js, tag=闪购盲盒
+cron "20 8 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_sgmh.js, tag=闪购盲盒
 
 ===============Surge=================
-闪购盲盒 = type=cron,cronexp="20 8 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_sgmh.js
+闪购盲盒 = type=cron,cronexp="20 8 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_sgmh.js
 
 ============小火箭=========
-闪购盲盒 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_sgmh.js, cronexpr="20 8 * * *", timeout=3600, enable=true
+闪购盲盒 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_sgmh.js, cronexpr="20 8 * * *", timeout=3600, enable=true
 
  */
 const $ = new Env('闪购盲盒');
@@ -30,7 +30,7 @@ let appId = '1EFRRxA' , homeDataFunPrefix = 'interact_template', collectScoreFun
 let lotteryResultFunPrefix = homeDataFunPrefix, browseTime = 6
 const inviteCodes = [
   'T022v_13RxwZ91ffPR_wlPcNfACjVWmIaW5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWmIaW5kRrbA@T016aGPImbWDIsNs9Zd1CjVWmIaW5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWmIaW5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWmIaW5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWmIaW5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWmIaW5kRrbA',
-  'T022v_13RxwZ91ffPR_wlPcNfACjVWmIaW5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWmIaW5kRrbA@T016aGPImbWDIsNs9Zd1CjVWmIaW5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWmIaW5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWmIaW5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWmIaW5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWmIaW5kRrbA'
+  'T022v_13RxwZ91ffPR_wlPcNfACjVWmIaW5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWmIaW5kRrbA@T016aGPImbWDIsNs9Zd1CjVWmIaW5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWmIaW5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWmIaW5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWmIaW5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWmIaW5kRrbA',
 ];
 const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -320,7 +320,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `https://raw.githubusercontent.com/shuye73/RandomShareCode/master/JD_SGMH.json`,
+      url: `https://cdn.jsdelivr.net/gh/shuye73/RandomShareCode@master/JD_SGMH.json`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {

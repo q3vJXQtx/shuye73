@@ -49,8 +49,8 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  ``,
-  ``,
+  `oMZeXeJKo94DC7M4NLZy_70wCimaBxFoNSjC7fDqCrR7aXDs@oMZeDqEh0-kDXqdqfdEIs3n_mKlPzpEr99gPE-69Wl7rLLI`,
+  `oMZeXeJKo94DC7M4NLZy_70wCimaBxFoNSjC7fDqCrR7aXDs@oMZeDqEh0-kDXqdqfdEIs3n_mKlPzpEr99gPE-69Wl7rLLI`,
 ];
 !(async () => {
   await requireConfig();
@@ -152,7 +152,7 @@ async function helpFriends() {
     if (!code) continue
     await helpFriend(code)
     if (!$.canHelp) return
-    await $.wait(6500)
+    await $.wait(4000)
   }
 }
 
@@ -322,7 +322,7 @@ function helpFriend(inviteId) {
           if (data && data.data['bizCode'] === 0) {
             console.log(data.data.result.msg)
           } else {
-            console.log(data.data.bizMsg)
+            console.log(`helpFriends ${data.data.bizMsg}`)
             if (data.data.bizCode === -523) {
               $.canHelp = false
             }

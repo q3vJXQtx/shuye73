@@ -3,23 +3,23 @@ crazyJoy任务
 
 每天运行一次即可
 
-
+活动入口：京东APP我的-更多工具-疯狂的JOY
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #crazyJoy任务
-10 7 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_crazy_joy.js, tag=crazyJoy任务, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_crazy_joy.png, enabled=true
+10 7 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_crazy_joy.js, tag=crazyJoy任务, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_crazy_joy.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 7 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_crazy_joy.js,tag=crazyJoy任务
+cron "10 7 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_crazy_joy.js,tag=crazyJoy任务
 
 ===============Surge=================
-crazyJoy任务 = type=cron,cronexp="10 7 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_crazy_joy.js
+crazyJoy任务 = type=cron,cronexp="10 7 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_crazy_joy.js
 
 ============小火箭=========
-crazyJoy任务 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_crazy_joy.js, cronexpr="10 7 * * *", timeout=3600, enable=true
+crazyJoy任务 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_crazy_joy.js, cronexpr="10 7 * * *", timeout=3600, enable=true
 
  */
 
@@ -34,7 +34,7 @@ let applyJdBean = 0; //疯狂的JOY京豆兑换，目前最小值为2000京豆�
 let cookiesArr = [], cookie = '', message = '';
 const inviteCodes = [
   'WYJ0yHMAY9EyV87yr81V6at9zd5YaBeE@BB48h3AETPoBgT0f-in5WQ==@-NIhS5GCc2v5NIQ2iMLVaw==@Nvsdq9jBpUrl3Xj2dwWefQ==@ITHDF803EoO0USld6XQLkKt9zd5YaBeE@McVA9IYe8-vTxiA7HFdw96t9zd5YaBeE@qEkZwFoVEtYRNfdFOj1MWg==',
-  'WYJ0yHMAY9EyV87yr81V6at9zd5YaBeE@BB48h3AETPoBgT0f-in5WQ==@-NIhS5GCc2v5NIQ2iMLVaw==@Nvsdq9jBpUrl3Xj2dwWefQ==@ITHDF803EoO0USld6XQLkKt9zd5YaBeE@McVA9IYe8-vTxiA7HFdw96t9zd5YaBeE@qEkZwFoVEtYRNfdFOj1MWg=='
+  'WYJ0yHMAY9EyV87yr81V6at9zd5YaBeE@BB48h3AETPoBgT0f-in5WQ==@-NIhS5GCc2v5NIQ2iMLVaw==@Nvsdq9jBpUrl3Xj2dwWefQ==@ITHDF803EoO0USld6XQLkKt9zd5YaBeE@McVA9IYe8-vTxiA7HFdw96t9zd5YaBeE@qEkZwFoVEtYRNfdFOj1MWg==',
 ];
 const randomCount = $.isNode() ? 10 : 5;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -274,6 +274,7 @@ async function jdCrazyJoy() {
     console.log(`检测您打开了自动兑换开关，去兑换京豆`)
     await doApplyJdBean(applyJdBean)
   }
+  await getSpecialJoy();
   await showMsg();
 }
 async function doTasks() {
@@ -711,7 +712,7 @@ function taskUrl(functionId, body = '') {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `https://raw.githubusercontent.com/shuye73/RandomShareCode/master/JD_Crazy_Joy.json`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({url: `https://cdn.jsdelivr.net/gh/shuye73/RandomShareCode@master/JD_Crazy_Joy.json`, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)

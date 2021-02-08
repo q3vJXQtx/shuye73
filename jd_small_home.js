@@ -88,7 +88,7 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
       await smallHome();
     }
   }
-  await updateInviteCodeCDN('https://raw.githubusercontent.com/shuye73/updateTeam/master/jd_updateSmallHomeInviteCode.json');
+  await updateInviteCodeCDN('https://cdn.jsdelivr.net/gh/shuye73/updateTeam@master/jd_updateSmallHomeInviteCode.json');
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -787,7 +787,7 @@ function login(userName) {
     })
   })
 }
-function updateInviteCode(url = 'https://raw.githubusercontent.com/LXK9301/updateTeam/master/jd_updateSmallHomeInviteCode.json') {
+function updateInviteCode(url = 'https://cdn.jsdelivr.net/gh/shuye73/updateTeam@master/jd_updateSmallHomeInviteCode.json') {
   return new Promise(resolve => {
     $.get({url}, async (err, resp, data) => {
       try {
