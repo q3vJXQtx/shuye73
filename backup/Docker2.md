@@ -6,14 +6,14 @@
 3. 此教程所提供的方案源码为@EvineDeng编写而成能够做到每天自动运行，自动更新
 
 ## 教程主体
-1. 安装docker (已经安装的跳至第二步)
-
+1.安装docker (已经安装的跳至第二步)
+	
 	sudo yum check-update
 	curl -fsSL https://get.docker.com/ | sh
 	sudo systemctl start docker
 	sudo systemctl status docker
 	sudo systemctl enable docker 
 
-2. 既然是0基础那么你肯定是第一次安装docker，所以这一步你并不需要清除原有的容器，如果你有洁癖可以重装你的设备
+2.既然是0基础那么你肯定是第一次安装docker，所以这一步你并不需要清除原有的容器，如果你有洁癖可以重装你的设备
 
-### 3.
+3.
