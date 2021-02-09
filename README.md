@@ -21,7 +21,7 @@
 
 ## 使用教程
 
-### 一 Github Action 使用教程
+### 一丶Github Action 使用教程
 1. [按照这个教程进行 reposync](backup/reposync.md)
 2. 再在`Settings`-`Secrets`里面添加`JD_COOKIE`
 3. 多条 cookie 用`&`隔开，支持无数条 cookie
@@ -34,6 +34,6 @@ lxk0301-环境变量合集（Secrets）配置[点击查看](https://gitee.com/lx
 
 > 具体如何取 cookie 如何配置,可参考 [lxk0301 的获取京东Cookies教程](https://gitee.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie.md)
 
-### 二 [Docker2 V3 gitee库使用教程](backup/Docker2.md)
+### 二丶[Docker2 V3 gitee库使用教程](backup/Docker2.md)
 
-### 三 [电报通知频道](https://t.me/joinchat/Uf-EARsmoLq4Lym3)
+### 三丶[电报通知频道](https://t.me/joinchat/Uf-EARsmoLq4Lym3)
