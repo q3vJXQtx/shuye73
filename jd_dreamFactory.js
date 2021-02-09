@@ -1342,8 +1342,8 @@ function shareCodesFormat() {
 function requireConfig() {
   return new Promise(async resolve => {
     await updateTuanIdsCDN('https://raw.githubusercontent.com/shuye73/updateFactoryTuanId/master/jd_updateFactoryTuanId.json');
-    if (!$.tuanIdS) await updateTuanIds();
-    if (!$.tuanIdS) await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/shuye73/updateFactoryTuanId@master/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIds('https://purge.jsdelivr.net/gh/shuyeshuye/updateFactoryTuanId@main/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/shuyeshuye/updateFactoryTuanId@main/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
       tuanActiveId = $.tuanIdS.tuanActiveId;
     }
