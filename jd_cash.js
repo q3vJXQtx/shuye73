@@ -263,7 +263,10 @@ function readShareCode() {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} gitee联不通`)
+          console.log(`${$.name} API请求失败，将切换为备用API`)
+          $.get({url: `https://gitee.com/Soundantony/RandomShareCode/raw/master/JD_Cash.json`, 'timeout': 10000},(err, resp, data)=>
+          data = JSON.parse(data);
+          console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
         } else {
           if (data) {
             console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
