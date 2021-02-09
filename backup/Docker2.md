@@ -17,7 +17,7 @@
 
 ![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/Portainer.png)
 
-2.既然是0基础那么你肯定是第一次安装docker，所以这一步你并不需要清除原有的容器，如果你有洁癖可以重装你的设备
+2.既然是0基础那么你肯定是第一次安装docker，所以这一步你并不需要清除原有的容器，如果你之前有在用容器，那么建议你安装`Portainer`手动删除容器以及镜像重新拉取安装
 
 3.创建容器
 
