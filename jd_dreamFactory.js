@@ -1184,7 +1184,7 @@ function tuanAward(activeId, tuanId, isTuanLeader = true) {
     })
   })
 }
-function updateTuanIds(url = 'https://gitee.com/shuye72/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json') {
+function updateTuanIds(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json') {
   return new Promise(resolve => {
     $.get({url,headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -1207,7 +1207,7 @@ function updateTuanIds(url = 'https://gitee.com/shuye72/updateFactoryTuanId/raw/
     })
   })
 }
-function updateTuanIdsCDN(url = 'https://gitee.com/shuye72/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json') {
+function updateTuanIdsCDN(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json') {
   return new Promise(async resolve => {
     $.get({url,
       headers:{
@@ -1352,9 +1352,9 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://gitee.com/shuye72/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json');
-    if (!$.tuanIdS) await updateTuanIds('https://raw.githubusercontent.com/shuyeshuye/RandomShareCode/main/JD_Dream_Factory.json');
-    if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/shuye72/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json');
+    await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIds('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
       tuanActiveId = $.tuanIdS.tuanActiveId;
     }
