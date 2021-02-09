@@ -15,6 +15,8 @@
 	sudo systemctl enable docker 
 注①：此处强烈建议顺便安装`Portainer`(一款可视化容器管理工具)如果你不清楚什么是`Portainer`，那么我建议你回看阅读须知第一条
 
+![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/Portainer.png)
+
 2.既然是0基础那么你肯定是第一次安装docker，所以这一步你并不需要清除原有的容器，如果你有洁癖可以重装你的设备
 
 3.创建容器
