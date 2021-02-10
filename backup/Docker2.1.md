@@ -12,9 +12,9 @@
 
 ### 安装方法：
 
-    `wget -q https://gitee.com/shuye72/MyActions/raw/main/docker/jd-base.sh -O jd-base.sh && chmod +x jd-base.sh && ./jd-base.sh`
+    wget -q https://gitee.com/shuye72/MyActions/raw/main/docker/jd-base.sh -O jd-base.sh && chmod +x jd-base.sh && ./jd-base.sh
 
 ### 示意图
-![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/jd-base_success.png.png)
+![image](https://github.com/shuye73/MyActions/blob/main/backup/docker/jd-base_success.png)
 
  
