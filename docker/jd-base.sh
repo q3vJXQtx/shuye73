@@ -138,7 +138,7 @@ if [ $HAS_CONTAINER = true ] && [ $DEL_CONTAINER = true ]; then
     docker rm $CONTAINER_NAME >/dev/null
 fi
 
-log "3.开始创建容器并执行"
+log "3.开始创建容器并执行,若出现Unable to find image请耐心等待"
 docker run -dit \
     -v $CONFIG_PATH:/jd/config \
     -v $LOG_PATH:/jd/log \
