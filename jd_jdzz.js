@@ -52,8 +52,8 @@ const inviteCodes = [
 !(async () => {
   $.tuanList = []
   await requireConfig();
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/Soundantony/updateTeam/raw/main/jd_zz.json');
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/Soundantony/updateTeam/raw/main/jd_zz.json');
+  if (helpAuthor) await getAuthorShareCode('https://gitee.com/Soundantony/updateTeam/raw/master/jd_zz.json');
+  if (helpAuthor) await getAuthorShareCode('https://gitee.com/Soundantony/updateTeam/raw/master/jd_zz.json');
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
@@ -353,7 +353,7 @@ function readShareCode() {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，将切换为备用API`)
           console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/RandomShareCode/main/JD_Jdzz.json`, 'timeout': 10000},(err, resp, data)=>{
+          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/RandomShareCode/master/JD_Jdzz.json`, 'timeout': 10000},(err, resp, data)=>{
           data = JSON.parse(data);})
         } else {
           if (data) {

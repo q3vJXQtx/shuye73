@@ -88,7 +88,7 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
       await smallHome();
     }
   }
-  await updateInviteCodeCDN('https://cdn.jsdelivr.net/gh/shuyeshuye/updateTeam@main/jd_updateSmallHomeInviteCode.json');
+  await updateInviteCodeCDN('https://cdn.jsdelivr.net/gh/shuyeshuye/updateTeam@master/jd_updateSmallHomeInviteCode.json');
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -787,7 +787,7 @@ function login(userName) {
     })
   })
 }
-function updateInviteCode(url = 'https://gitee.com/Soundantony/updateTeam/raw/main/jd_updateSmallHomeInviteCode.json') {
+function updateInviteCode(url = 'https://gitee.com/Soundantony/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json') {
   return new Promise(resolve => {
     $.get({url,headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -797,7 +797,7 @@ function updateInviteCode(url = 'https://gitee.com/Soundantony/updateTeam/raw/ma
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，将切换为备用API`)
           console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/updateTeam/main/jd_updateSmallHomeInviteCode.json`, 'timeout': 10000},(err, resp, data)=>{
+          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/updateTeam/master/jd_updateSmallHomeInviteCode.json`, 'timeout': 10000},(err, resp, data)=>{
           $.inviteCodes = JSON.parse(data);})
         } else {
           $.inviteCodes = JSON.parse(data);

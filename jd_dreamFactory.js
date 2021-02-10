@@ -1025,7 +1025,7 @@ async function joinLeaderTuan() {
     }
   }
   $.tuanIdS = null;
-  if (!$.tuanIdS) await updateTuanIdsCDN('https://raw.githubusercontent.com/shuyeshuye/updateFactoryTuanId/main/jd_updateFactoryTuanId.json');
+  if (!$.tuanIdS) await updateTuanIdsCDN('https://raw.githubusercontent.com/shuyeshuye/updateFactoryTuanId/master/jd_updateFactoryTuanId.json');
   if ($.tuanIdS && $.tuanIdS.tuanIds) {
     for (let tuanId of $.tuanIdS.tuanIds) {
       if (!tuanId) continue
@@ -1184,7 +1184,7 @@ function tuanAward(activeId, tuanId, isTuanLeader = true) {
     })
   })
 }
-function updateTuanIds(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json') {
+function updateTuanIds(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json') {
   return new Promise(resolve => {
     $.get({url,headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -1194,7 +1194,7 @@ function updateTuanIds(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，将切换为备用API`)
           console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/updateFactoryTuanId/main/jd_updateFactoryTuanId.json`, 'timeout': 10000},(err, resp, data)=>{
+          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/updateFactoryTuanId/master/jd_updateFactoryTuanId.json`, 'timeout': 10000},(err, resp, data)=>{
           $.tuanIdS = JSON.parse(data);})
         } else {
           $.tuanIdS = JSON.parse(data);
@@ -1207,7 +1207,7 @@ function updateTuanIds(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/
     })
   })
 }
-function updateTuanIdsCDN(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json') {
+function updateTuanIdsCDN(url = 'https://gitee.com/Soundantony/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json') {
   return new Promise(async resolve => {
     $.get({url,
       headers:{
@@ -1312,7 +1312,7 @@ function readShareCode() {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，将切换为备用API`)
           console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/RandomShareCode/main/JD_Dream_Factory.json`, 'timeout': 10000},(err, resp, data)=>{
+          $.get({url: `https://raw.githubusercontent.com/shuyeshuye/RandomShareCode/master/JD_Dream_Factory.json`, 'timeout': 10000},(err, resp, data)=>{
           data = JSON.parse(data);})
         } else {
           if (data) {
@@ -1352,9 +1352,9 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
-    if (!$.tuanIdS) await updateTuanIds('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
-    if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/main/jd_updateFactoryTuanId.json');
+    await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIds('https://gitee.com/Soundantony/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json');
+    if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/Soundantony/updateFactoryTuanId/raw/master/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
       tuanActiveId = $.tuanIdS.tuanActiveId;
     }
