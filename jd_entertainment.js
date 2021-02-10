@@ -108,7 +108,7 @@ async function entertainment() {
   await draw();
   console.log(`好友助力码【 ${$.shareCode} 】`);
   console.log(message);
-  await submitShareCode({ 'share_code': $.shareCode, 'pt_key': $.UserName });
+  await submitShareCode({ 'share_code': $.shareCode});
   if ($.isNode()) {
   await notify.sendNotify(`${$.name}运行完成`, `京东账号${$.index} ${$.nickName || $.UserName}\n请手动打开领取奖品\nhttps://lzdz-isv.isvjcloud.com/dingzhi/change/able/activity/3508994?activityId=dz2102100001340201\n`);
   }
