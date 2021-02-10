@@ -11,7 +11,7 @@
 # 京东压岁钱抢百元卡(活动时间：2021-2-1至2021-2-11)
 0 9,12,16,20 * * * node /scripts/jd_newYearMoney_lottery.js >> /scripts/logs/jd_newYearMoney_lottery.log 2>&1
 #环球挑战赛 活动时间：2021-02-02 至 2021-02-22
-0 9,12,20,21 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
+0 9,12,20,21 2-22 2 * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 #百变大咖秀
 10 0,10,15 * * * node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
 
