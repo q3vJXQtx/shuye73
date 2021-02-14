@@ -58,7 +58,6 @@
 	--name watchtower \
 	-v /var/run/docker.sock:/var/run/docker.sock \
 	containrrr/watchtower \
-	jd
 
 ### 注意：
 1. 请在创建后使用`docker logs -f jd`查看创建日志，直到出现容器启动成功…字样才代表启动成功（不是以此结束的请更新镜像），按`Ctrl+C`退出查看日志。
