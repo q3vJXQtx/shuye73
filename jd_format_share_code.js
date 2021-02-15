@@ -1,4 +1,3 @@
-
 /*
 现在只能获取手动提交
 基于 lxk0301 大佬的版本基础上做了格式划打印调整
@@ -20,7 +19,7 @@ cron "0 1 0/2 * *" script-path=https://gitee.com/qq34347476/quantumult-x/raw/mas
 ============小火箭=========
 获取并提交助力码 = type=cron,script-path=https://gitee.com/qq34347476/quantumult-x/raw/master/get_share_jd_code.js, cronexpr="0 35 2 1,10,20 * ?", timeout=200, enable=true
  */
-const $ = new Env('获取并格式化助力码')
+const $ = new Env('获取并格式化助力码 for Linux')
 const JD_API_HOST = 'https://api.m.jd.com/client.action'
 let cookiesArr = [],
   cookie = '',
@@ -1168,6 +1167,120 @@ async function getJoy() {
     )
   })
 }
+// 年兽
+async function getJdNS() {
+  function getUserInfo(body = {}) {
+    return new Promise(resolve => {
+      $.post(
+        taskPostUrl('nian_getTaskDetail', body, 'nian_getTaskDetail'),
+        async (err, resp, data) => {
+          try {
+            if (err) {
+              console.log(`${JSON.stringify(err)}`)
+              console.log(`${$.name} API请求失败，请检查网路重试`)
+            } else {
+              if (safeGet(data)) {
+                data = JSON.parse(data)
+                if (data.data.bizCode === 0) {
+                  if (JSON.stringify(body) === '{}') {
+                    let token = data.data.result.inviteId
+                    console.log(
+                      `【账号${$.index}（${
+                        $.nickName || $.UserName
+                      }）京东年兽】${token}`
+                    )
+                    jdnian.push(token)
+                  }
+                }
+              }
+            }
+          } catch (e) {
+            $.logErr(e, resp)
+          } finally {
+            resolve(data)
+          }
+        }
+      )
+    })
+  }
+
+  await getUserInfo()
+}
+// 京东年货
+async function getJdNH() {
+  const ACT_ID = 'dzvm210168869301'
+  let shareUuid = 'd8e13cf24701413d8776a7d726309626'
+
+  function getIsvToken() {
+    let config = {
+      url: 'https://api.m.jd.com/client.action?functionId=genToken',
+      body:
+        'body=%7B%22to%22%3A%22https%3A%5C%2F%5C%2Flzdz-isv.isvjcloud.com%5C%2Fdingzhi%5C%2Fvm%5C%2Ftemplate%5C%2Factivity%5C%2F940531%3FactivityId%3Ddzvm210168869301%22%2C%22action%22%3A%22to%22%7D&build=167490&client=apple&clientVersion=9.3.2&openudid=53f4d9c70c1c81f1c8769d2fe2fef0190a3f60d2&sign=11c092269dfa11a21fec29b3a844c752&st=1610417332242&sv=112',
+      headers: {
+        Host: 'api.m.jd.com',
+        accept: '*/*',
+        'user-agent': 'JD4iPhone/167490 (iPhone; iOS 14.2; Scale/3.00)',
+        'accept-language':
+          'zh-Hans-JP;q=1, en-JP;q=0.9, zh-Hant-TW;q=0.8, ja-JP;q=0.7, en-US;q=0.6',
+        'content-type': 'application/x-www-form-urlencoded',
+        Cookie: cookie,
+      },
+    }
+    return new Promise(resolve => {
+      $.post(config, async (err, resp, data) => {
+        try {
+          if (err) {
+            console.log(`${err}`)
+            console.log(`${$.name} API请求失败，请检查网路重试`)
+          } else {
+            if (safeGet(data)) {
+              data = JSON.parse(data)
+              $.isvToken = data.tokenKey
+            }
+          }
+        } catch (e) {
+          $.logErr(e, resp)
+        } finally {
+          resolve(data)
+        }
+      })
+    })
+  }
+  function getIsvToken2() {
+    let config = {
+      url: 'https://api.m.jd.com/client.action?functionId=isvObfuscator',
+      body:
+        'body=%7B%22url%22%3A%22https%3A%5C%2F%5C%2Flzdz-isv.isvjcloud.com%22%2C%22id%22%3A%22%22%7D&build=167490&client=apple&clientVersion=9.3.2&openudid=53f4d9c70c1c81f1c8769d2fe2fef0190a3f60d2&sign=a65279303b19bf51c17e7dbfdea85dd3&st=1610417332632&sv=112',
+      headers: {
+        Host: 'api.m.jd.com',
+        accept: '*/*',
+        'user-agent': 'JD4iPhone/167490 (iPhone; iOS 14.2; Scale/3.00)',
+        'accept-language':
+          'zh-Hans-JP;q=1, en-JP;q=0.9, zh-Hant-TW;q=0.8, ja-JP;q=0.7, en-US;q=0.6',
+        'content-type': 'application/x-www-form-urlencoded',
+        Cookie: cookie,
+      },
+    }
+    return new Promise(resolve => {
+      $.post(config, async (err, resp, data) => {
+        try {
+          if (err) {
+            console.log(`${err}`)
+            console.log(`${$.name} API请求失败，请检查网路重试`)
+          } else {
+            if (safeGet(data)) {
+              data = JSON.parse(data)
+              $.token2 = data.token
+            }
+          }
+        } catch (e) {
+          $.logErr(e, resp)
+        } finally {
+          resolve(data)
+        }
+      })
+    })
+  }
   // 获得游戏的Cookie
   function getActCk() {
     return new Promise(resolve => {
@@ -1644,8 +1757,9 @@ function showFormatMsg() {
   console.log(`\n提交机器人 @Commit Code Bot\n`)
   console.log(`/jdcash ${jdcash.join('&')}\n`)
   console.log(`/jdcrazyjoy ${jdcrazyjoy.join('&')}\n`)
-  console.log(`/jdnh ${jdnh.join('&')}\n`)
+  //console.log(`/jdnh ${jdnh.join('&')}\n`)
   console.log(`/jdzz ${jdzz.join('&')}\n`)
+  //console.log(`/jdnian ${jdnian.join('&')}\n`)
 
   console.log(`\n========== 【格式化互助码for JD-FreeFuck ==========`)
   formatForJDFreeFuck(hqtzs, '环球挑战赛(2.22)', 'MyGLOBAL', 'ForOtherGLOBAL')
@@ -1680,6 +1794,8 @@ async function getShareCodeAndAdd() {
   await getJDFruit() // 京东农场
   await getJdZZ() // 京东赚赚
   await getJoy() // CrazyJoy
+  //await getJdNS() // 年兽
+  //await getJdNH() // 京东年货
   await getJDCase() // 京东签到领现金
   await getSgmh() // 闪购盲盒
   console.log(`======账号${$.index}结束======\n`)
