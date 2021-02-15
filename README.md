@@ -2,8 +2,6 @@
 
 ## 特别声明: 
 
-* 仓库fork数量上涨，建议收藏gitee库地址，如若被删则gitee库会第一时间发布新库地址[点击查看](https://gitee.com/shuye72/projects)
-
 * 本仓库发布的MyActions项目中涉及的任何解锁和解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断.
 
 * 本项目内所有资源文件，禁止任何公众号、自媒体进行任何形式的转载、发布。
@@ -40,4 +38,4 @@ lxk0301-环境变量合集（Secrets）配置[点击查看](https://gitee.com/lx
 
 ### [如果你感觉上面的学不会，那么点这里可以走捷径](backup/docker/Docker2.1.md)
 
-### 三丶[电报通知频道](https://t.me/joinchat/Uf-EARsmoLq4Lym3)
+### 三丶仓库fork数量上涨，建议加入[电报通知频道](https://t.me/joinchat/Uf-EARsmoLq4Lym3)或者收藏[Gitee库地址](https://gitee.com/shuye72/projects)，如若被删则第一时间能够收到最新消息。
