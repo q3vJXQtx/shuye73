@@ -99,4 +99,4 @@
 # 直播间红包雨
 0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 * node /scripts/jd_redrain.js >> /scripts/logs/jd_redrain.log 2>&1
 # 京喜财富岛
-10 5 * * * node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
+10 * * * * node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
