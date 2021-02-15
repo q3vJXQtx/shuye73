@@ -1717,7 +1717,7 @@ let jdnian = [] // JD炸年兽
 let jdSgmh = [] // 闪购盲盒
 let hqtzs = [] // 环球挑战赛
 
-function formatForJDFreeFuck(
+function formatShareCodes(
   arr = [],
   name = '',
   itemName = '',
@@ -1761,16 +1761,16 @@ function showFormatMsg() {
   console.log(`/jdzz ${jdzz.join('&')}\n`)
   //console.log(`/jdnian ${jdnian.join('&')}\n`)
 
-  console.log(`\n========== 【格式化互助码for JD-FreeFuck ==========`)
-  formatForJDFreeFuck(hqtzs, '环球挑战赛(2.22)', 'MyGLOBAL', 'ForOtherGLOBAL')
-  formatForJDFreeFuck(submit_bean_code, '种豆得豆', 'MyBean', 'ForOtherBean')
-  formatForJDFreeFuck(submit_farm_code, '东东农场', 'MyFruit', 'ForOtherFruit')
-  formatForJDFreeFuck(submit_pet_code, '东东萌宠', 'MyPet', 'ForOtherPet')
-  formatForJDFreeFuck(submit_jxfactory_code,'京喜工厂','MyDreamFactory','ForOtherDreamFactory')
-  formatForJDFreeFuck(submit_ddfactory_code,'东东工厂','MyJdFactory','ForOtherJdFactory')
-  //formatForJDFreeFuck(jdcash, '签到领现金', 'MyCash', 'ForOtherCash')
-  formatForJDFreeFuck(jdcrazyjoy, 'crazy joy', 'MyJoy', 'ForOtherJoy')
-  formatForJDFreeFuck(jdSgmh, '闪购盲盒', 'MySgmh', 'ForOtherSgmh')
+  console.log(`\n========== 【格式化互助码==========`)
+  formatShareCodes(hqtzs, '环球挑战赛(2.22)', 'MyGLOBAL', 'ForOtherGLOBAL')
+  formatShareCodes(submit_bean_code, '种豆得豆', 'MyBean', 'ForOtherBean')
+  formatShareCodes(submit_farm_code, '东东农场', 'MyFruit', 'ForOtherFruit')
+  formatShareCodes(submit_pet_code, '东东萌宠', 'MyPet', 'ForOtherPet')
+  formatShareCodes(submit_jxfactory_code,'京喜工厂','MyDreamFactory','ForOtherDreamFactory')
+  formatShareCodes(submit_ddfactory_code,'东东工厂','MyJdFactory','ForOtherJdFactory')
+  //formatShareCodes(jdcash, '签到领现金', 'MyCash', 'ForOtherCash')
+  formatShareCodes(jdcrazyjoy, 'crazy joy', 'MyJoy', 'ForOtherJoy')
+  formatShareCodes(jdSgmh, '闪购盲盒', 'MySgmh', 'ForOtherSgmh')
 }
 
 async function getShareCodeAndAdd() {
