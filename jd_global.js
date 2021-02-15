@@ -171,7 +171,7 @@ async function getHome(info = false) {
                   }
                 }
               } else {
-                console.log(`当前活动：第${activityCalendar.currDays}/${activityCalendar.totalDays}天`)
+                //console.log(`当前活动：第${activityCalendar.currDays}/${activityCalendar.totalDays}天`)
               }
               $.score = parseInt(data.result.data.mileageAmount)
             }
