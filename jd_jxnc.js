@@ -183,7 +183,7 @@ function requireConfig() {
 
         try {
             let options = {
-                "url": `https://gitee.com/Soundantony/RandomShareCode/blob/master/JX_Fruit.json`,
+                "url": `https://gitee.com/Soundantony/RandomShareCode/raw/master/JX_Fruit.json`,
                 "headers": {
                     "Accept": "application/json,text/plain, */*",
                     "Content-Type": "application/x-www-form-urlencoded",
