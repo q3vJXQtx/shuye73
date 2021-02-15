@@ -1752,10 +1752,10 @@ function showFormatMsg() {
   console.log(`/submit_pet_code ${submit_pet_code.join('&')}\n`)
   console.log(`/submit_jxfactory_code ${submit_jxfactory_code.join('&')}\n`)
   console.log(`/submit_ddfactory_code ${submit_ddfactory_code.join('&')}\n`)
-  console.log(`/submit_zodiac_tempcode ${submit_zodiac_tempcode.join('&')}\n`)
+  //console.log(`/submit_zodiac_tempcode ${submit_zodiac_tempcode.join('&')}\n`)
 
   console.log(`\n提交机器人 @Commit Code Bot\n`)
-  console.log(`/jdcash ${jdcash.join('&')}\n`)
+  //console.log(`/jdcash ${jdcash.join('&')}\n`)
   console.log(`/jdcrazyjoy ${jdcrazyjoy.join('&')}\n`)
   //console.log(`/jdnh ${jdnh.join('&')}\n`)
   console.log(`/jdzz ${jdzz.join('&')}\n`)
@@ -1766,19 +1766,9 @@ function showFormatMsg() {
   formatForJDFreeFuck(submit_bean_code, '种豆得豆', 'MyBean', 'ForOtherBean')
   formatForJDFreeFuck(submit_farm_code, '东东农场', 'MyFruit', 'ForOtherFruit')
   formatForJDFreeFuck(submit_pet_code, '东东萌宠', 'MyPet', 'ForOtherPet')
-  formatForJDFreeFuck(
-    submit_jxfactory_code,
-    '京喜工厂',
-    'MyDreamFactory',
-    'ForOtherDreamFactory'
-  )
-  formatForJDFreeFuck(
-    submit_ddfactory_code,
-    '东东工厂',
-    'MyJdFactory',
-    'ForOtherJdFactory'
-  )
-  formatForJDFreeFuck(jdcash, '签到领现金', 'MyCash', 'ForOtherCash')
+  formatForJDFreeFuck(submit_jxfactory_code,'京喜工厂','MyDreamFactory','ForOtherDreamFactory')
+  formatForJDFreeFuck(submit_ddfactory_code,'东东工厂','MyJdFactory','ForOtherJdFactory')
+  //formatForJDFreeFuck(jdcash, '签到领现金', 'MyCash', 'ForOtherCash')
   formatForJDFreeFuck(jdcrazyjoy, 'crazy joy', 'MyJoy', 'ForOtherJoy')
   formatForJDFreeFuck(jdSgmh, '闪购盲盒', 'MySgmh', 'ForOtherSgmh')
 }
