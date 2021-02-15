@@ -3,7 +3,7 @@
 
 | Name | 归属 | 属性 | 说明 |
 | --- | :-: | --- | --- |
-| `XMLY_SPEED_COOKIE` | 喜马拉雅 | 非必须 | [Cookie 获取请参考](https://github.com/Zero-S1/xmly_speed/blob/master/xmly_speed.md),仅支持 git actions 执行,多个 Cookie 用换行即可 |
+| `XMLY_SPEED_COOKIE` | 喜马拉雅 | 非必须 | [Cookie 获取请参考](backup/xmlyck.md),仅支持 git actions 执行,多个 Cookie 用换行即可 |
 | `XMLY_ANDROID_AGENT` | 喜马拉雅 | 非必须 | 仅安卓用的 Agent 配置，不填的话也会默认用红米 8 的 |
 | `XMLY_ACCUMULATE_TIME` | 喜马拉雅 | 非必须 | 需要刷时长任务的话，填入`zero_s1`；可能会黑号，请知悉 |
 | `XMLY_ACCUMULATE_INDEX` | 喜马拉雅 | 非必须 | 需配合`XMLY_ACCUMULATE_TIME`使用，用于限定某个索引的账号不进行刷时长 |
