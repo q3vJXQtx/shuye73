@@ -161,24 +161,6 @@ function requireConfig() {
             })
         }
 
-        // 检查互助码是否为 json [smp,active,joinnum] 格式，否则进行通知
-        for (let i = 0; i < jxncShareCodeArr.length; i++) {
-            if (jxncShareCodeArr[i]) {
-                let tmpJxncShareStr = jxncShareCodeArr[i];
-                let tmpjsonShareCodeArr = tmpJxncShareStr.split('@');
-                if (!changeShareCodeJson(tmpjsonShareCodeArr[0])) {
-                    $.log('互助码格式已变更，请重新填写互助码');
-                    $.msg($.name, '互助码格式变更通知', '互助码格式变更，请重新填写 ‼️‼️', option);
-                    if ($.isNode()) {
-                        await notify.sendNotify(`${$.name}`, `互助码格式变更，请重新填写 ‼️‼️`);
-                    }
-                }
-                break;
-            }
-        }
-
-        // console.log(`jdFruitShareArr::${JSON.stringify(jxncShareCodeArr)}`)
-        // console.log(`jdFruitShareArr账号长度::${jxncShareCodeArr.length}`)
         $.log(`您提供了${jxncShareCodeArr.length}个账号的京喜农场助力码`);
 
         try {
