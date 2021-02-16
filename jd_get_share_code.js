@@ -1746,12 +1746,12 @@ function formatShareCodes(
 function showFormatMsg() {
   console.log(`\n========== 【格式化互助码&】 ==========`)
   console.log(`\n提交机器人 @Turing Lab Bot\n`)
-  console.log(`/submit_temp_code jdglobal  ${hqtzs.join('&')}\n`)
-  console.log(`/submit_bean_code ${submit_bean_code.join('&')}\n`)
-  console.log(`/submit_farm_code ${submit_farm_code.join('&')}\n`)
-  console.log(`/submit_pet_code ${submit_pet_code.join('&')}\n`)
-  console.log(`/submit_jxfactory_code ${submit_jxfactory_code.join('&')}\n`)
-  console.log(`/submit_ddfactory_code ${submit_ddfactory_code.join('&')}\n`)
+  console.log(`/submit_activity_codes jdglobal  ${hqtzs.join('&')}\n`)
+  console.log(`/submit_activity_codes bean ${submit_bean_code.join('&')}\n`)
+  console.log(`/submit_activity_codes farm ${submit_farm_code.join('&')}\n`)
+  console.log(`/submit_activity_codes pet ${submit_pet_code.join('&')}\n`)
+  console.log(`/submit_activity_codes jxfactory ${submit_jxfactory_code.join('&')}\n`)
+  console.log(`/submit_activity_codes ddfactory ${submit_ddfactory_code.join('&')}\n`)
   //console.log(`/submit_zodiac_tempcode ${submit_zodiac_tempcode.join('&')}\n`)
 
   console.log(`\n提交机器人 @Commit Code Bot\n`)
