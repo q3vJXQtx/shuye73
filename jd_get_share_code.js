@@ -1762,7 +1762,7 @@ function showFormatMsg() {
   //console.log(`/jdnian ${jdnian.join('&')}\n`)
 
   console.log(`\n========== 【格式化互助码==========`)
-  formatShareCodes(hqtzs, '环球挑战赛(2.22)', 'MyGLOBAL', 'ForOtherGLOBAL')
+  formatShareCodes(hqtzs, '环球挑战赛(2.22)', 'MyGlobal', 'ForOtherGlobal')
   formatShareCodes(submit_bean_code, '种豆得豆', 'MyBean', 'ForOtherBean')
   formatShareCodes(submit_farm_code, '东东农场', 'MyFruit', 'ForOtherFruit')
   formatShareCodes(submit_pet_code, '东东萌宠', 'MyPet', 'ForOtherPet')
