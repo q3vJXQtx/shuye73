@@ -10,6 +10,9 @@
 10 9,12,20,21 2-22 2 * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 # 百变大咖秀第二期
 22 23,0,9 * * * node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
+# 京东沃尔玛
+29 23,0,9 * * * node /scripts/jd_walmart.js >> /scripts/logs/jd_walmart.log 2>&1
+
 ##############长期活动##############
 # 京东小魔方(活动时间：2021年1月28日～2021年2月28日)
 34 23,0 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
