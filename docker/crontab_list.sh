@@ -101,4 +101,4 @@
 # 京喜财富岛
 10 * * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
 # 京东试用（默认注释，请配合取关脚本使用）
-#10 0 * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
+#10 0 * * *  node /scripts/jx_try.js >> /scripts/logs/jx_try.log 2>&1
