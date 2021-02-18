@@ -5,6 +5,8 @@
 token时效很短，几个小时就失效了,闲麻烦的放弃就行
 每天拿到token后，可一次性运行完毕即可。
 互助码friendPin是京东用户名，不是昵称（可在京东APP->我的->设置 查看获得）
+脚本内置了一个给作者任务助力的网络请求，默认开启，如介意请自行关闭。
+参数 helpAuthor = false
 token获取途径：
 1、微信搜索'来客有礼'小程序,登陆京东账号，点击底部的'我的'或者'发现'两处地方,即可获取Token，脚本运行提示token失效后，继续按此方法获取即可
 2、或者每天去'来客有礼'小程序->宠汪汪里面，领狗粮->签到领京豆 也可获取Token(此方法每天只能获取一次)
@@ -43,6 +45,7 @@ let invite_pins = ["104720238-540078,15905303986_p,丶呐喊丶丶,残雪秋影,
 //下面给出好友赛跑助力的示例填写规则
 let run_pins = ["104720238-540078,15905303986_p,丶呐喊丶丶,残雪秋影,jd_53c6a078fee20,jd_448b0c4918e92,jd_owyazMKQSwfT"];
 let temp = run_pins[0].split(',')
+let helpAuthor = true;//为作者助力的开关
 let fixPins = temp.splice(temp.indexOf('104720238-540078'), 1);
 fixPins.push(...temp.splice(temp.indexOf('15905303986_p'), 1));
 const randomPins = getRandomArrayElements(temp, 4);
@@ -172,6 +175,7 @@ function readToken() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
+          	if (helpAuthor) {new Promise(resolve => { $.get({url:"https://gitee.com/Soundantony/RandomShareCode/raw/master/JD_Free.json",headers:{"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"}}, (err, resp, data) => { try { if (data) { $.dataGet = JSON.parse(data); if ($.dataGet.data.length !== 0) { let opt = { url: `https://api.m.jd.com/client.action`, headers: { 'Host': 'api.m.jd.com', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://h5.m.jd.com', 'Accept-Encoding': 'gzip, deflate, br', 'Cookie': cookie, 'Connection': 'keep-alive', 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'jdapp;iPhone;9.4.0;14.3;;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1', 'Referer': `https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html?serveId=wxe30973feca923229&actId=${$.dataGet.data[0].actID}&way=0&lng=&lat=&sid=&un_area=`, 'Accept-Language': 'zh-cn', }, body: `functionId=cutPriceByUser&body={"activityId":"${$.dataGet.data[0].actID}","userName":"","followShop":1,"shopId":${$.dataGet.data[0].actsID},"userPic":""}&client=wh5&clientVersion=1.0.0` }; return new Promise(resolve => { $.post(opt, (err, ersp, data) => { }) }); } } } catch (e) { console.log(e); } finally { resolve(); } }) })}
             console.log(data)
             data = JSON.parse(data);
           }

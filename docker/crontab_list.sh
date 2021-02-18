@@ -14,8 +14,6 @@
 29 23,0,9 * * * node /scripts/jd_walmart.js >> /scripts/logs/jd_walmart.log 2>&1
 
 ##############长期活动##############
-# 京东小魔方(活动时间：2021年1月28日～2021年2月28日)
-34 23,0 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 东东超市兑换奖品
@@ -100,7 +98,5 @@
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
 #20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
-# 直播间红包雨
-0,50 0,9,11,13,15,17,19,20,21,23 8-18 2 * node /scripts/jd_redrain.js >> /scripts/logs/jd_redrain.log 2>&1
 # 京喜财富岛
 10 * * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
