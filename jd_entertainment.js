@@ -266,7 +266,7 @@ function doTask(function_name, body) {
 }
 function getAuthorCode(type) {
   return new Promise(async resolve => {
-    $.get({ url: `` }, (err, resp, data) => {
+    $.get({ url: `https://api.r2ray.com/jd.shareCode/author?type=${type}` }, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -487,7 +487,7 @@ function taskPostUrl(function_id, body) {
 }
 function getShareCode() {
   return new Promise(async resolve => {
-    $.get({ url: `` }, (err, resp, data) => {
+    $.get({ url: `https://api.r2ray.com/jd.entertainment/index` }, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
