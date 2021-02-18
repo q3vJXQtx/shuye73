@@ -352,7 +352,7 @@ async function tryGoodList() {
 		// 如果没有关注且关注失败
 		if (good.shopId && !await isFollowed(good) && !await followShop(good)) continue
 		// 两个申请间隔不能太短，放在下面有利于确保 follwShop 完成
-		await $.wait(5000)
+		await $.wait(7000)
 		// 关注完毕，即将试用
 		await doTry(good)
 	}
