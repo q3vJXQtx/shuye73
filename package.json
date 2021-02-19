@@ -16,8 +16,6 @@
   "author": "LXK9301",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.88.2",
-    "request-promise": "^4.2.5",
     "crypto-js": "^4.0.0",
     "download": "^8.0.0",
     "got": "^11.5.1",
