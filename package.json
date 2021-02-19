@@ -8,7 +8,7 @@
   },
   "repository":{
     "type":"git",
-    "url":"https://github.com/shuye73/MyActions.git"
+    "url":"https://github.com/LXK9301/jd_scripts.git"
   },
   "keywords":[
     "京东薅羊毛工具, 京东水果、宠物、种豆等等"
@@ -38,6 +38,6 @@
         "tunnel":"0.0.6",
         "axios":"0.20.0",
         "download":"^8.0.0",
-        "node-cron":"2.0.3",
+        "node-cron":"2.0.3"
     }
 }
