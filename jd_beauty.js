@@ -3,7 +3,8 @@
 活动入口：京东app首页-美妆馆-底部中间按钮
 只支持Node.js支持N个京东账号
 脚本兼容: Node.js
-
+脚本内置了一个给作者任务助力的网络请求，默认开启，如介意请自行关闭。
+参数 helpAuthor = false
 cron 1 7,12,19 * * * jd_beauty.js
  */
 const $ = new Env('美丽研究院');
