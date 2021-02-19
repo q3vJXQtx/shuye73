@@ -6,7 +6,7 @@ name: 京东女装盲盒📦
 on:
     workflow_dispatch:
     schedule:
-        - cron: "10 3,16,23 * * *"
+        - cron: "13 4,10,16 * * *"
     watch:
         types: [started]
     repository_dispatch:
