@@ -39,6 +39,7 @@
         "axios":"0.20.0",
         "download":"^8.0.0",
         "node-cron":"2.0.3",
+        "python":"3.7",
         "websocket":"^1.0.33"
     }
 }
