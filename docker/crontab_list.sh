@@ -13,7 +13,7 @@
 # 京东女装盲盒
 9 23,0,9 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 # 美丽研究院
-9 0,12,18 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
+9 0,12,18 * * * node /scripts/jd_beauty_docker.js >> /scripts/logs/jd_beauty_docker.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
