@@ -38,6 +38,7 @@
         "tunnel":"0.0.6",
         "axios":"0.20.0",
         "download":"^8.0.0",
-        "node-cron":"2.0.3"
+        "node-cron":"2.0.3",
+        "websocket":"^1.0.33"
     }
 }
