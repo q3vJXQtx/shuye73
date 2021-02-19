@@ -24,7 +24,6 @@
     "request":"^2.88.2",
     "tough-cookie":"^4.0.0",
     "tunnel":"0.0.6",
-    "websocket":"^1.0.33"
   },
   "homepage":"https://github.com/sazs34/MyActions#readme",
     "dependencies":{
@@ -39,6 +38,6 @@
         "axios":"0.20.0",
         "download":"^8.0.0",
         "node-cron":"2.0.3",
-        "websocket":"^1.0.33"
+        "ws":"7.4.3"
     }
 }
