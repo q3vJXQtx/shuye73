@@ -2,8 +2,6 @@
 50 23 */3 * * rm -rf /scripts/logs/*.log
 
 ##############短期活动##############
-# 小鸽有礼(活动时间：2021年1月15日至2021年2月19日)
-5 7 * * * node /scripts/jd_xg.js >> /scripts/logs/jd_xg.log 2>&1
 # 小鸽有礼2(活动时间：2021年1月28日～2021年2月28日)
 34 9 * * * node /scripts/jd_xgyl.js >> /scripts/logs/jd_jd_xgyl.log 2>&1
 #环球挑战赛 活动时间：2021-02-02 至 2021-02-22
@@ -12,6 +10,8 @@
 22 23,0,9 * * * node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1
 # 京东沃尔玛
 29 23,0,9 * * * node /scripts/jd_walmart.js >> /scripts/logs/jd_walmart.log 2>&1
+# 京东女装盲盒
+9 23,0,9 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 
 ##############长期活动##############
 # 签到
@@ -102,3 +102,4 @@
 10 * * * *  node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
 # 京东试用（默认注释，请配合取关脚本使用）
 #10 0 * * *  node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+
