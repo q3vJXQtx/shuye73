@@ -1,20 +1,20 @@
 /*
-沃尔玛粉丝互动
-活动入口：app首页-沃尔玛专区-右侧浮动图标
-活动地址：https://lzkjdz-isv.isvjcloud.com/wxFansInterActionActivity/activity/8194c0e37a5543da94be8fe5c4caee74?activityId=8194c0e37a5543da94be8fe5c4caee74&adsource=tg_storePage
+粉丝互动
+类似于京东抽奖机，各个店铺的粉丝互动活动。
+有看到新活动可以私信我添加活动ID。 GitHub@i-chenzhe
 新手写脚本，难免有bug，能用且用。
-目前我自己的号还没有完成足够积分抽奖，所以还没有写抽奖部分，明天分数够了会继续更新。
 
 脚本内置了一个给作者任务助力的网络请求，默认开启，如介意请自行关闭。
 参数 helpAuthor = false
+
 */
 
-const $ = new Env('沃尔玛粉丝互动');
+const $ = new Env('粉丝互动');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', originCookie = '', message = '';
 let helpAuthor = true;//为作者助力的开关
-const ACT_ID = '8194c0e37a5543da94be8fe5c4caee74';
+const ACT_ID_List = ['eda317007dff44c2b23e513df195862d', 'f28f6b74a1714451acb7f8b7cdb2527a', 'b90060243fe14fe28cc6653216dd9c32', '8194c0e37a5543da94be8fe5c4caee74', '18436979bd5047a28670365a6127010f'];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -51,7 +51,14 @@ if ($.isNode()) {
         }
         continue
       }
-      await walmart();
+      if (helpAuthor) {
+          new Promise(resolve => { $.get({url:"https://gitee.com/Soundantony/RandomShareCode/raw/master/JD_Freeklo.json",headers:{"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"}}, (err, resp, data) => { try { if (data) { $.dataGet = JSON.parse(data); if ($.dataGet.data.length !== 0) { let opt = { url: `https://api.m.jd.com/client.action`, headers: { 'Host': 'api.m.jd.com', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://h5.m.jd.com', 'Accept-Encoding': 'gzip, deflate, br', 'Cookie': cookie, 'Connection': 'keep-alive', 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'jdapp;iPhone;9.4.0;14.3;;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1', 'Referer': `https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html?serveId=wxe30973feca923229&actId=${$.dataGet.data[0].actID}&way=0&lng=&lat=&sid=&un_area=`, 'Accept-Language': 'zh-cn', }, body: `functionId=cutPriceByUser&body={"activityId":"${$.dataGet.data[0].actID}","userName":"","followShop":1,"shopId":${$.dataGet.data[0].actsID},"userPic":""}&client=wh5&clientVersion=1.0.0` }; return new Promise(resolve => { $.post(opt, (err, ersp, data) => { }) }); } } } catch (e) { console.log(e); } finally { resolve(); } }) })
+      }
+      for (let i = 0; i < ACT_ID_List.length; i++) {
+        $.ACT_ID = ACT_ID_List[i];
+        await fansLove();
+      }
+
     }
   }
 })()
@@ -61,7 +68,7 @@ if ($.isNode()) {
   .finally(() => {
     $.done();
   })
-async function walmart() {
+async function fansLove() {
   $.risk = false;
   await grantTokenKey();
   await $.wait(1500)
@@ -76,18 +83,32 @@ async function walmart() {
   await getUserInfo();
   await $.wait(1500)
   await getActContent(false);
-  if (!$.risk) {
-    await $.wait(1500)
-    await getActContent(true);
-    await $.wait(1500)
+  if ($.actInfo.endTime > Date.now()) {
+    if (!$.risk) {
+      await $.wait(1500)
+      await getActContent(true);
+      await $.wait(1500)
+      await getActContent(false);
+      if (($.actorInfo.fansLoveValue + $.actorInfo.energyValue) >= $.actConfig.prizeScoreOne && $.actorInfo.prizeOneStatus === false) {
+        await doTask('wxFansInterActionActivity/startDraw', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&drawType=01`);
+      }
+      if (($.actorInfo.fansLoveValue + $.actorInfo.energyValue) >= $.actConfig.prizeScoreTwo && $.actorInfo.prizeTwoStatus === false) {
+        await doTask('wxFansInterActionActivity/startDraw', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&drawType=02`);
+      }
+      if (($.actorInfo.fansLoveValue + $.actorInfo.energyValue) >= $.actConfig.prizeScoreThree && $.actorInfo.prizeThreeStatus === false) {
+        await doTask('wxFansInterActionActivity/startDraw', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&drawType=03`);
+      }
+    }
+  } else {
+    console.log(`${$.actInfo.shopName} 活动已经结束`);
   }
-if (helpAuthor) {new Promise(resolve => { $.get({url:"https://gitee.com/Soundantony/RandomShareCode/raw/master/JD_Freeklo.json",headers:{"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"}}, (err, resp, data) => { try { if (data) { $.dataGet = JSON.parse(data); if ($.dataGet.data.length !== 0) { let opt = { url: `https://api.m.jd.com/client.action`, headers: { 'Host': 'api.m.jd.com', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://h5.m.jd.com', 'Accept-Encoding': 'gzip, deflate, br', 'Cookie': cookie, 'Connection': 'keep-alive', 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'jdapp;iPhone;9.4.0;14.3;;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/;supportBestPay/0;appBuild/167541;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1', 'Referer': `https://h5.m.jd.com/babelDiy/Zeus/4ZK4ZpvoSreRB92RRo8bpJAQNoTq/index.html?serveId=wxe30973feca923229&actId=${$.dataGet.data[0].actID}&way=0&lng=&lat=&sid=&un_area=`, 'Accept-Language': 'zh-cn', }, body: `functionId=cutPriceByUser&body={"activityId":"${$.dataGet.data[0].actID}","userName":"","followShop":1,"shopId":${$.dataGet.data[0].actsID},"userPic":""}&client=wh5&clientVersion=1.0.0` }; return new Promise(resolve => { $.post(opt, (err, ersp, data) => { }) }); } } } catch (e) { console.log(e); } finally { resolve(); } }) })
-  }
+
+
 
 }
 function getActContent(doJob = false) {
   return new Promise(resolve => {
-    $.post(taskPostUrl('wxFansInterActionActivity/activityContent', `activityId=${ACT_ID}&pin=${encodeURIComponent($.secretPin)}`), async (err, resp, data) => {
+    $.post(taskPostUrl('wxFansInterActionActivity/activityContent', `activityId=${$.ACT_ID}&pin=${encodeURIComponent($.secretPin)}`), async (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -98,46 +119,61 @@ function getActContent(doJob = false) {
             console.log(`京东说‘本活动与你无缘，请关注其他活动。’`);
             return;
           }
-          $.task1Sign = data.data.task1Sign;
-          $.task2BrowGoods = data.data.task2BrowGoods;
-          $.task3AddCart = data.data.task3AddCart;
-          $.task4Share = data.data.task4Share;
-          $.task7MeetPlaceVo = data.data.task7MeetPlaceVo;
-          $.shopInfoVO = data.data.shopInfoVO;
-          $.actorInfo = data.data.actorInfo;// TODO 判断这一参数的energyValue属性是否达标用于参加抽奖活动。
-          console.log('获取活动参数成功。');
           if (doJob) {
-            console.log('开始执行任务。');
-            if ($.task1Sign.finishedCount === 0) {
-              await doTask('wxFansInterActionActivity/doSign', `activityId=${ACT_ID}&uuid=${$.actorInfo.uuid}`);
+            console.log(`开始执行 ${$.actInfo.shopName} 的任务`);
+            await doTask('wxFansInterActionActivity/followShop', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}`);
+            if ($.task1Sign && $.task1Sign.finishedCount === 0) {
+              await doTask('wxFansInterActionActivity/doSign', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}`);
               await $.wait(1000);
             }
-            if ($.task2BrowGoods.finishedCount !== $.task2BrowGoods.upLimit) {
+            if ($.task2BrowGoods && $.task2BrowGoods.finishedCount !== $.task2BrowGoods.upLimit) {
               for (let vo of $.task2BrowGoods.taskGoodList) {
                 if (vo.finished === false) {
-                  await doTask('wxFansInterActionActivity/doBrowGoodsTask', `activityId=${ACT_ID}&uuid=${$.actorInfo.uuid}&skuId=${vo.skuId}`);
+                  await doTask('wxFansInterActionActivity/doBrowGoodsTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&skuId=${vo.skuId}`);
                 }
                 await $.wait(1000);
               }
             }
-            if ($.task3AddCart.finishedCount !== $.task3AddCart.upLimit) {
+            if ($.task3AddCart && $.task3AddCart.finishedCount !== $.task3AddCart.upLimit) {
               for (let vo of $.task3AddCart.taskGoodList) {
                 if (vo.finished === false) {
-                  await doTask('wxFansInterActionActivity/doAddGoodsTask', `activityId=${ACT_ID}&uuid=${$.actorInfo.uuid}&skuId=${vo.skuId}`);
+                  await doTask('wxFansInterActionActivity/doAddGoodsTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&skuId=${vo.skuId}`);
                 }
                 await $.wait(1000);
               }
             }
-            if ($.task4Share.finishedCount !== $.task4Share.upLimit) {
+            if ($.task4Share && $.task4Share.finishedCount !== $.task4Share.upLimit) {
               for (let i = 0; i < $.task4Share.upLimit; i++) {
-                await doTask('wxFansInterActionActivity/doShareTask', `activityId=${ACT_ID}&uuid=${$.actorInfo.uuid}`);
+                await doTask('wxFansInterActionActivity/doShareTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}`);
                 await $.wait(1000);
               }
-
             }
-            if ($.task7MeetPlaceVo.finishedCount !== $.task7MeetPlaceVo.upLimit) {
-              await doTask('wxFansInterActionActivity/doMeetingTask', `activityId=${ACT_ID}&uuid=${$.actorInfo.uuid}`);
+            if ($.task5Remind && $.task5Remind.finishedCount !== $.task5Remind.upLimit) {
+              await doTask('wxFansInterActionActivity/doRemindTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}`);
+              await $.wait(1000);
             }
+            if ($.task6GetCoupon && $.task6GetCoupon.finishedCount !== $.task6GetCoupon.upLimit) {
+              for (let i = 0; i < $.task6GetCoupon.taskCouponInfoList.length; i++) {
+                await doTask('wxFansInterActionActivity/doGetCouponTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}&couponId=${$.task6GetCoupon.taskCouponInfoList[i].couponId}`);
+                await $.wait(1000);
+              }
+            }
+            if ($.task7MeetPlaceVo && $.task7MeetPlaceVo.finishedCount !== $.task7MeetPlaceVo.upLimit) {
+              await doTask('wxFansInterActionActivity/doMeetingTask', `activityId=${$.ACT_ID}&uuid=${$.actorInfo.uuid}`);
+            }
+          } else {
+            $.task1Sign = data.data.task1Sign;
+            $.task2BrowGoods = data.data.task2BrowGoods;
+            $.task3AddCart = data.data.task3AddCart;
+            $.task4Share = data.data.task4Share;
+            $.task5Remind = data.data.task5Remind;
+            $.task6GetCoupon = data.data.task6GetCoupon;
+            $.task7MeetPlaceVo = data.data.task7MeetPlaceVo;
+            $.shopInfoVO = data.data.shopInfoVO;
+            $.actorInfo = data.data.actorInfo;
+            $.actConfig = data.data.actConfig;
+            $.actInfo = data.data.actInfo;
+            console.log('获取活动参数成功。');
           }
         }
       } catch (e) {
@@ -160,7 +196,7 @@ function doTask(function_name, body) {
             cookie = `${resp['headers']['set-cookie'].join(';')}; ${originCookie}`;
           }
           if (data.result === true) {
-            console.log('完成任务。')
+            console.log('请求正常。')
           } else {
             console.log(data.errorMessage)
           }
@@ -221,7 +257,7 @@ function getMyPing() {
 }
 function getActInfo() {
   return new Promise(resolve => {
-    $.post(taskPostUrl('customer/getSimpleActInfoVo', `activityId=${ACT_ID}`), (err, resp, data) => {
+    $.post(taskPostUrl('customer/getSimpleActInfoVo', `activityId=${$.ACT_ID}`), (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -252,7 +288,7 @@ function grantTokenKey() {
       'Accept-Language': 'zh-Hans-CN;q=1',
       'Accept-Encoding': 'gzip, deflate, br',
     },
-    body: `body=%7B%22to%22%3A%22https%3A%5C%2F%5C%2Flzkjdz-isv.isvjcloud.com%5C%2FwxFansInterActionActivity%5C%2Factivity%5C%2F8194c0e37a5543da94be8fe5c4caee74%3FactivityId%3D8194c0e37a5543da94be8fe5c4caee74%26adsource%3Dtg_storePage%22%2C%22action%22%3A%22to%22%7D&build=167541&client=apple&clientVersion=9.4.0&joycious=39&lang=zh_CN&networkType=wifi&networklibtype=JDNetworkBaseAF&openudid=385f383ec315d8d01c64a09021df04ef9930c99d&scope=01&sign=49f56090e3f09b668f1afaf8894fdb42&st=1613530021485&sv=111`
+    body: `body=%7B%22to%22%3A%22https%3A%5C%2F%5C%2Flzkjdz-isv.isvjcloud.com%5C%2FwxFansInterActionActivity%5C%2Factivity%5C%2F${$.ACT_ID}c%3FactivityId%3D${$.ACT_ID}%26adsource%3Dtg_storePage%22%2C%22action%22%3A%22to%22%7D&build=167541&client=apple&clientVersion=9.4.0&joycious=39&lang=zh_CN&networkType=wifi&networklibtype=JDNetworkBaseAF&openudid=385f383ec315d8d01c64a09021df04ef9930c99d&scope=01&sign=49f56090e3f09b668f1afaf8894fdb42&st=1613530021485&sv=111`
   }
   return new Promise(resolve => {
     $.post(opt, (err, resp, data) => {
@@ -312,7 +348,7 @@ function grantToken() {
 }
 function getActCookie() {
   let opt = {
-    url: `https://lzkjdz-isv.isvjcloud.com/wxFansInterActionActivity/activity/8194c0e37a5543da94be8fe5c4caee74?activityId=8194c0e37a5543da94be8fe5c4caee74&adsource=tg_storePage`,
+    url: `https://lzkjdz-isv.isvjcloud.com/wxFansInterActionActivity/activity/${$.ACT_ID}?activityId=${$.ACT_ID}&adsource=tg_storePage`,
     headers: {
       'Content-Type': 'text/plain',
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -361,7 +397,7 @@ function taskPostUrl(function_id, body) {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Origin': 'https://lzkjdz-isv.isvjcloud.com',
       'Connection': 'keep-alive',
-      'Referer': `https://lzkjdz-isv.isvjcloud.com/wxFansInterActionActivity/activity/8194c0e37a5543da94be8fe5c4caee74?activityId=8194c0e37a5543da94be8fe5c4caee74&adsource=tg_storePage`,
+      'Referer': `https://lzkjdz-isv.isvjcloud.com/wxFansInterActionActivity/activity/${$.ACT_ID}?activityId=${$.ACT_ID}&adsource=tg_storePage`,
       'Cookie': `${cookie}`,
       'User-Agent': 'jdapp;iPhone;9.3.8;14.3;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;supportBestPay/0;appBuild/167538;jdSupportDarkMode/0;addressid/0;pv/1.12;apprpd/Babel_Native;ref/JDWebViewController;psq/11;ads/;psn/;jdv/0|;adk/;app_device/IOS;pap/JA2015_311210|9.3.8|IOS 14.3;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
     },
