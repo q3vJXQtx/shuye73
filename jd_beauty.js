@@ -174,6 +174,13 @@ function yjy() {
                             console.log(`异常：${data.msg}\n`);
                         }
                         break;
+                        case 'product_lists':
+                        if (data.code === 200) {
+                            $.product_lists = data.data;
+                        } else {
+                            console.log(`异常：${data.msg}\n`);
+                        }
+                        break;
                     case 'get_question':
                         if (data.code === 200) {
                             $.question = data.data;
@@ -341,7 +348,7 @@ function yjy() {
                         await $.wait(1000);
                     }
                 }
-                if ((6 < $.hours && $.hours < 9) || (11 < $.hours && $.hours < 14) || (18 < $.hours && $.hours < 21)) {
+                if ((6 <= $.hours && $.hours <= 9) || (11 <= $.hours && $.hours <= 14) || (18 <= $.hours && $.hours <= 21)) {
                     msg.check_up_receive.msg.args.check_up_id = $.taskState.check_up[0].id;
                     ws.send(JSON.stringify(msg.check_up_receive));
                 }
@@ -395,6 +402,17 @@ async function signIn() {
 }
 async function productProduce() {
     ws.send(JSON.stringify(msg.product_producing));
+    ws.send(JSON.stringify(msg.product_lists));
+    await $.wait(2000);
+    if ($.product_lists) {
+      for (let vo of $.product_lists) {
+        msg.product_produce.msg.args.product_id = vo.id;
+        msg.product_produce.msg.args.amount = 20;
+        ws.send(JSON.stringify(msg.product_produce));
+        await $.wait(3000)
+      }
+    }
+    await $.wait(5000)
 }
 async function exchange() {
     ws.send(JSON.stringify(msg.get_benefit));
